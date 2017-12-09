@@ -20,73 +20,35 @@ typedef vector<pii> vpii;
 #define FORD(i, b,a) for(int i= b; i< a ; i--)
 #define DEBUG(x) cout<<#x<<":"<<x<<"\n";
 #define MAXN  100000000000000000
+#include <string>
 
-int maxk = 100000;
-int k, p, sum = 0;
+i64 k, p;
+i64 sum;
 
+i64 find(int k){
 
-string clean_zeros(string k){
+    string partial_ans="";
+    int i = k;
+  
+    stringstream ss;
+    ss<<i;
 
-    string cop = k, ret="";
-    bool f_a ;
-    int i = 0 ;
-    while(cop.at(i) == '0'){
-        i++;
+    partial_ans = ss.str();
+
+    for(int y = partial_ans.length() -1; y > -1; y--){
+        char to_ap = partial_ans.at(y);
+        partial_ans += to_ap;
     }
-    ret = cop.substr(i, cop.length());
-    return ret;
-
-}
-
-bool zcy(string k){
-
-    bool first_app;
-    string  copy = k, first, second;
-    int nums = 0;
-
-    copy = clean_zeros(k);       
-    
-    if(copy.length() % 2 == 0){
-        FOR(i, 0, copy.length()/2){
-            if(copy.at(i) == copy.at(copy.length()-(2*i)))
-                nums++;                
-        }            
-        
-        if(nums == copy.length()/2 && copy.length()%2 == 0){
-            DEBUG(copy);
-            DEBUG(k);
-            return true;
-            
-        }
-        
-    }
-    
-        return false;
-}
-
-void find(int k){
-    int partial = 0, occurrences = 0; 
-    int i = 1;
-
-    while( occurrences < k ){
-        stringstream ss;
-        ss<<i;
-        //DEBUG(ss.str());
-        if(zcy(ss.str())){
-            partial += i;
-            occurrences++;
-            DEBUG(occurrences);
-        }
-        i++;
-    }
-    sum +=partial;
+   
+    return(stoll(partial_ans));
 }
 
 int main(){
     cin>>k>>p;
    
-    find(k);
-    //DEBUG(sum);
+    FOR(i, 1, k+1){
+        sum += find(i);
+    }    
     cout<<sum%p<<"\n";
     return 0;
 }
