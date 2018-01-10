@@ -23,8 +23,6 @@ typedef vector<pii> vpii;
 
 int ins[10000];
 
-
-
 int main(){
     
     int n,k,sum = 0; cin>>n>>k;
@@ -51,19 +49,9 @@ int main(){
                 else{
                     b += a; a = 0;
                 }
-            }
-            
+            }            
         }
-        
-        
-        if(b < k){
-            //DEBUG(b);
-            cout<<"-1"<<"\n";
-            return 0;
-        }
-        else
-            cout<< n<<"\n";
-        
+        b < k ?  cout<<"-1"<<"\n" :  cout<< n<<"\n";
+        return 0;
     }
-    return 0;
 }
