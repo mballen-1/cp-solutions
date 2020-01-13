@@ -25,7 +25,7 @@ typedef vector<pii> vpii;
 #define MAXN  100000000000000000
 
 string name;
-string omit = "AEIOUYWH";
+string omit-break = "AEIOUYWH";
 int num[] = {0, 1, 2, 3 ,4 ,5 ,6 ,7 ,8 ,9 };
 
 map<char, int> mymap;
