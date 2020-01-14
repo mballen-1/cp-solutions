@@ -9,9 +9,9 @@ using namespace std;
 
 int main(){
     int x; scanf("%d", &x);
-    int r, c, m, n;
+    int l, r;
     for(int i = 0; i< x; ++i){
-        scanf("%d %d", &r, &c);
-        printf("%d\n", (r/3) * (c/3) );
+        scanf("%d %d", &l, &r);
+        printf("%s\n", l < r ? "<": l > r ? ">" : "=");
     }
 }
