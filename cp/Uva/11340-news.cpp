@@ -48,7 +48,8 @@ int main()
         {   
             getline(cin, l);
             for (int q = 0; q < l.length(); ++q)
-            {
+            {   
+                printf("int l[q] = %d\n", (int)l[q]);
                 cnt += data[(int)l[q]];
             }
         }
