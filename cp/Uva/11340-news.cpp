@@ -41,6 +41,7 @@ int main()
         {
             cin >> c >> x;
             data[(int)c] = x;
+            DEBUG((int)c);
         }
         scanf("%d", &m);
         cin.ignore();
