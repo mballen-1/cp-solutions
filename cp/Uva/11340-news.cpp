@@ -44,6 +44,7 @@ int main()
             scanf(" %c", &c);
             scanf("%d\n", &x);
             cin.ignore();
+            cin.ignore();
             data[(int)c] = x;
         }
         scanf("%d\n", &m);
