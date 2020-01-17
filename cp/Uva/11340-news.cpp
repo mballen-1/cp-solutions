@@ -21,37 +21,37 @@ typedef pair<int,int> pii;
 typedef vector<pii> vpii;
 #define FOR(i, a,b) for(int i= a; i< b ; i++)
 #define FORD(i, b,a) for(int i= b; i > a ; i--)
-#define DEBUG(x) cout<<#x<<":"<<x<<"\n";
+#define DEBUG(x) cout<<#x<<" = "<<x<<"\n";
 #define MAXN  100000000000000000
 
 int main()
 {
     int n, k, m;
     ll x, cnt = 0;
-    char c; string l;
-    scanf("%d", &n);
+    string l;
+    scanf("%d\n", &n);
     int data[256];
-    FOR(i, 0, 256){
-        data[i] = 0;
-    }
-    for (int i = 0; i < n; ++i)
-    {
-        scanf("%d", &k);
-        for (int j = 0; j < k; ++j)
-        {
-            cin >> c >> x;
-            data[(int)c] = x;
-            DEBUG((int)c);
+    for (int i = 0; i < n; ++i) 
+    {   
+        FOR(i, 0, 256){
+            data[i] = 0;
         }
-        scanf("%d", &m);
-        cin.ignore();
-        for (int p = 0; p < m; ++p)
+        cnt = 0;
+        scanf("%d\n", &k);
+        for (int j = 0; j < k; ++j)
         {   
-            getline(cin, l);
-            for (int q = 0; q < l.length(); ++q)
-            {   
-                printf("int l[q] = %d\n", (int)l[q]);
-                cnt += data[(int)l[q]];
+            char c;
+            scanf(" %c", &c);
+            scanf("%d\n", &x);
+            cin.ignore();
+            data[(int)c] = x;
+        }
+        scanf("%d\n", &m);
+        cin.ignore();
+        for (int i = 0; i < m; i++) {
+            string t; getline(cin, t);
+            for(int z = 0; z < t.size(); ++z){ 
+                cnt += data[(int)t[z]];
             }
         }
         printf("%.2lf$\n", cnt / 100.0);
