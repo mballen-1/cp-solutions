@@ -24,24 +24,24 @@ typedef vector<pii> vpii;
 #define DEBUG(x) cout << #x << ":" << x << "\n";
 #define MAXN 100000000000000000
 
-int n, k, m;
-ll x, cnt;
+ll n, k, m, x, cnt;
 char c; string l;
-ll table[500];
+ll table[1000];
 
 int main() {
     scanf("%d", &n);
     for (int i = 0; i < n; ++i) {
-        FOR(i, 0, 500) {
+        FOR(i, 0, 1000) {
             table[i] = 0;
         }
         scanf("%d", &k);
         for (int i = 0; i < k; ++i){
             scanf("%s %d\n", &c, &x);
+            // DEBUG(c);
+            // DEBUG(x);
             table[(int)c] = x;
         }
         scanf("%d\n", &m);
-        cin.ignore();
         cnt = 0;
         for (int i = 0; i < m; ++i){
             getline(cin, l);
@@ -49,6 +49,7 @@ int main() {
                 cnt += table[(int)l[i]];
             }
         }
+        // DEBUG(cnt);
         printf("%.2lf$\n", cnt / 100.0);
     }
     return 0;
