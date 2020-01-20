@@ -40,7 +40,7 @@ int main() {
             scanf("%s %d\n", &c, &x);
             table[(int)c] = x;
         }
-        scanf("%d", &m);
+        scanf("%d\n", &m);
         cin.ignore();
         cnt = 0;
         for (int i = 0; i < m; ++i){
