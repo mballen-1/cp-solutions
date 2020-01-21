@@ -24,37 +24,32 @@ typedef vector<pii> vpii;
 #define DEBUG(x) cout<<#x<<" = "<<x<<"\n";
 #define MAXN  100000000000000000
 
-int main()
-{
-    int n, k, m;
-    ll x, cnt = 0;
-    string l;
-    scanf("%d\n", &n);
-    int data[256];
-    for (int i = 0; i < n; ++i) 
-    {   
-        FOR(i, 0, 256){
-            data[i] = 0;
+int table[0xFF];
+ll n, k, m, sum;
+char c; ll val;
+string l;
+
+int main() {
+    scanf("%d", &n);
+    FOR(i, 0, n){
+        FOR(i, 0, 0xFF){
+            table[i] = 0;
         }
-        cnt = 0;
-        scanf("%d\n", &k);
-        for (int j = 0; j < k; ++j)
-        {   
-            char c;
-            scanf(" %c", &c);
-            scanf("%d\n", &x);
-            cin.ignore();
-            data[(int)c] = x;
+        scanf("%d", &k);
+        FOR(i, 0, k){
+            scanf("%s %d", &c, &val);
+            table[(int) c ] = val;
         }
-        scanf("%d\n", &m);
+        scanf("%d", &m);
         cin.ignore();
-        for (int i = 0; i < m; i++) {
-            string t; getline(cin, t);
-            for(int z = 0; z < t.size(); ++z){ 
-                cnt += data[(int)t[z]];
+        sum = 0;
+        FOR(i, 0, m){
+            getline(cin, l);
+            FOR(i, 0, l.size()){
+                sum += table[(int)l[i]];
             }
         }
-        printf("%.2lf$\n", cnt / 100.0);
+        printf("%.2lf$\n", sum / 100.0);
     }
     return 0;
 }
