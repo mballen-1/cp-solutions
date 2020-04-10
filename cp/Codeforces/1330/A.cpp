@@ -45,16 +45,11 @@ int main(){
             }
             cnt[i] = 1;
         }
-        // FOR(i, 0, 300){
-        //     printf("%d",cnt[i]);
-        // }
-        // printf("\n");
         bool ans = false;
         FOR(i, 0, 256){
             if (!cnt[i] && !ans){
                 printf("%d\n", i);
                 ans = true;
-                // break;
             }
         }
     }
