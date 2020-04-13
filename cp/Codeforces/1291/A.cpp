@@ -24,33 +24,33 @@ typedef vector<pii> vpii;
 #define DEBUG(x) cout << std::setprecision(15) << #x << " = " << x << "\n";
 #define MAXN 100000000000000000
 
-int t, n, x, y;
-int cnt [256];
+int t, d;
+string s;
+
+string proc(int d, string s){
+    string ans = "";
+    FOR(i, 0, d){
+        int x = s[i] - '0';
+        if((x & 1) > 0){
+            ans += to_string(x);
+            if(ans.length() == 2){
+                return ans;
+            }
+        }
+    }
+    return  "-1";
+}
+
 
 int main(){
     scanf("%d", &t);
-    while(t--){
-        scanf("%d %d", &n, &x);
-        FOR(i, 0, 256){
-            cnt[i] = 0;
-        }
-        while(n--){
-            scanf("%d", &y);
-            cnt[y-1] = 1;
-        }
-        while(x--){
-            int i = 0;
-            while(cnt[i]){
-                ++i;
-            }
-            cnt[i] = 1;
-        }
-        bool ans = false;
-        FOR(i, 0, 256){
-            if (!cnt[i] && !ans){
-                printf("%d\n", i);
-                ans = true;
-            }
+    FOR(i, 0, t){
+        scanf("%d", &d);
+        cin >> s;
+        if (d > 1){
+            printf("%s\n", proc(d, s).c_str());
+        } else {
+            printf("-1\n");
         }
     }
     return 0;
