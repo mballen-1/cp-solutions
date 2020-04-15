@@ -23,23 +23,35 @@ typedef vector<pii> vpii;
 #define FORD(i, b, a) for (int i = b; i > a; i--)
 #define DEBUG(x) cout << std::setprecision(15) << #x << " = " << x << "\n";
 #define MAXN 100000000000000000
-
-int t;
-double n;
+ 
+int t, n, x, y;
 int cnt [256];
-
+ 
 int main(){
     scanf("%d", &t);
     while(t--){
-        scanf("%lf", &n);
-        double b = 1, a = n - b; 
-        double ans = round((a - b) /2);
-        if(ans < 0) {
-            printf("0\n");
-        } else {
-            cout << (int) ans << "\n";
+        scanf("%d %d", &n, &x);
+        FOR(i, 0, 256){
+            cnt[i] = 0;
         }
-               
+        while(n--){
+            scanf("%d", &y);
+            cnt[y-1] = 1;
+        }
+        while(x--){
+            int i = 0;
+            while(cnt[i]){
+                ++i;
+            }
+            cnt[i] = 1;
+        }
+        bool ans = false;
+        FOR(i, 0, 256){
+            if (!cnt[i] && !ans){
+                printf("%d\n", i);
+                ans = true;
+            }
+        }
     }
     return 0;
 }

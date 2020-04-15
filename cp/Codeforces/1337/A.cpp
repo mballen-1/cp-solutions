@@ -24,30 +24,27 @@ typedef vector<pii> vpii;
 #define DEBUG(x) cout << std::setprecision(15) << #x << " = " << x << "\n";
 #define MAXN 100000000000000000
  
-int t, n, x;
-float y;
+int t;
+double a, b, c, d;
  
+bool fits(double x, double c, double d) {
+    return x >= c && x <= d;
+}
+
+
 int main(){
     scanf("%d", &t);
     while(t--) {
-        scanf("%d %d", &n, &x);
-        vector<float> nums;
-        while(n--){
-            scanf("%f", &y);
-            nums.push_back(y);
-        }
-        sort(nums.begin(), nums.end());
-        reverse(nums.begin(), nums.end());
-        double sum = 0;
-        int k = 0;
-        FOR(i,0, nums.size()){
-            float p = (sum + nums[i]) / (k + 1);
-            if( p >= x ){
-                sum += nums[i];
-                ++k;
-            }
-        }
-        printf("%d\n", k);
+        scanf("%lf %lf %lf %lf\n", &a, &b, &c, &d);
+        double x = b;
+        double y = c;
+        double min = abs(x-y);
+        double max = x + y;
+        double z = fits(min + 1, c, d) && (min +1) < (x + y) ? 
+            min + 1 : 
+                fits(max - 1, c, d) && (max - 1) < (x + y) ?
+                    max -1 : c;
+        printf("%d %d %d\n", (int)x, (int) y, (int) z);
     }
     return 0;
 }
