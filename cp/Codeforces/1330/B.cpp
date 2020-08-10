@@ -27,103 +27,67 @@ typedef vector<pii> vpii;
 int t, n, x, y;
 int cnt [256];
 
+
+// 1. len1 = ma, len2 = n − ma,
+// 2. len1 = n − ma, len2 = ma.
+
+bool eval(vi p, int left, int right){
+    vi calc(MAXN + 1);
+    FOR(i, 1, MAXN){
+        calc[i] = 0;
+    }
+    FOR(i, left, right){
+        calc[p[i]]++;
+    }
+    FOR(i, 1, right-left + 1){
+        if(calc[i] == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+
 int main(){
     scanf("%d", &t);
-    while(t--){
+    while(t--) {
         int answers = 0;
+        bool a = false , b = false;
         scanf("%d", &n);
+        int ma = -1;
         vi nums;
+        
         while(n--){
            scanf("%d", &x);
            nums.push_back(x);
+           ma = max(ma, x);
         }
-        mii mpl, mpr;
-        map<int,int>::iterator it;
-        int br = -1;
-        FOR(i, 0, nums.size()){
-            it = mpl.find(nums[i]);
-            if(it == mpl.end()){
-                mpl.insert(pair<int,int>(nums[i],1));
-            } else {
-                    br = i;
-                    i = nums.size();
-            }
-        }
-        
-        FOR(i, br, nums.size()){
-            if(mpr.find(nums[i]) == mpr.end()){
-                mpr.insert(pair<int,int>(nums[i],1));
-            } 
-        }
-        vi left, right;
-        int lsum = 0, rsum = 0;
-        int lex = (br+1)*(br)/2;
-        int rex = (nums.size()-br) * (nums.size()-br + 1)/2;
-        bool vl = true, vr = true;
-        FOR(i, 0, br){
-            lsum += nums[i];
-        }
-        FOR(i, br, nums.size()){
-            rsum += nums[i];
-        }
-        printf("A como está el lex = %d\n", lex);
-        printf("A como está el rex = %d\n", rex);
-        printf("A como está el lsum = %d\n", lsum);
-        printf("A como está el rsum = %d\n", rsum);
-        if(lsum == lex && rsum == rex){
-            ++answers;
-        }
+        n = nums.size();
 
-        printf("===============================jijij\n");
-        mii mpll, mprr;
-        map<int,int>::iterator itt;
-        int brr = nums.size();
-        FORD(i, nums.size(), -1){
-            itt = mprr.find(nums[i]);
-            if(itt == mprr.end()){
-                mprr.insert(pair<int,int>(nums[i],1));
-            } else {
-                    brr = i;
-                    i = 0;
-            }
-        }
-        
-        FORD(i, brr, -1){
-            if(mpll.find(nums[i]) == mpll.end()){
-                mpll.insert(pair<int,int>(nums[i],1));
-            } 
-        }
-        vi leftt, rightt;
-        int lsumm = 0, rsumm = 0;
-        int lexx = (brr+1)*(brr)/2;
-        int rexx = (nums.size()-brr) * (nums.size()-brr + 1)/2;
-        bool vll = true, vrr = true;
-        FORD(i, brr, -1){
-            lsumm += nums[i];
-        }
-        FORD(i, nums.size(), brr+1){
-            rsumm += nums[i];
-        }
-        printf("A como está el lexx = %d\n", lexx);
-        printf("A como está el rexx = %d\n", rexx);
-        printf("A como está el lsumm = %d\n", lsumm);
-        printf("A como está el rsumm = %d\n", rsumm);
-        if(lsumm == lexx && rsumm == rexx){
+        bool fcl = eval(nums, 0, ma);
+        bool fcr = eval(nums, ma, n);
+        bool scl = eval(nums, 0, n - ma);
+        bool scr = eval(nums, n - ma, n);
+
+        if(fcl && fcr){
             ++answers;
+            a = true;
+        }
+        if(scl && scr){
+            ++answers;
+            b = true;
+        }
+        if(ma == (n-ma) && (answers == 2)){
+           --answers;
+        }
+        printf("%d\n", answers);
+        if(a && answers){
+            --answers;
+            printf("%d %d\n", ma, n- ma);
         } 
-
-        if(answers > 0){
-            printf("\nANOS XD: %d\n", answers);
-            //if(answers >= 1){
-                printf("br = %d\n",br);
-                printf("%d %d\n\n", br, nums.size() - br);
-            //}
-            // if(answers == 2){
-                printf("brr = %d\n",brr);
-                printf("%d %d\n\n\n", brr, nums.size() - brr);
-            // }
-        } else{
-            printf("NADA ============ 0\n\n");
+        if(b && answers){
+            --answers;
+            printf("%d %d\n", n - ma, ma);
         }
     }
     return 0;
