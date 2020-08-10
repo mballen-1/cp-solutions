@@ -8,6 +8,7 @@
         "utility": "cpp",
         "valarray": "cpp",
         "*.tcc": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "iomanip": "cpp"
     }
 }

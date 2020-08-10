@@ -32,7 +32,11 @@ void _W(const int &x) { printf("%d\n", x); }
 void _W(const int64_t &x) { printf("%lld", x); }
 void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
-void _W(const char *x) { printf("%s", x); }int t, n;int main() {
+void _W(const char *x) { printf("%s", x); }
+
+int t, n;
+
+int main() {
   scanf("%d", &t);
   while (t--) {
     scanf("%d", &n);
@@ -45,13 +49,9 @@ void _W(const char *x) { printf("%s", x); }int t, n;int main() {
         printf("2\n");
         continue;
     }
-    if(n%9 == 0 || n%6 == 0){
+    if(n%9 == 0){
         while(n > 6){
-            if(n/6 % 6 == 0) {
-                n /= 6;
-            } else {
-                n *= 2;
-            }
+            n /= 6;
             ++mv;
         }
         if (n == 6) {

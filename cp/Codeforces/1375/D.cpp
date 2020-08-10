@@ -24,16 +24,39 @@
     #define DEBUG(x) cout << std::setprecision(15) << #x << " = " << x << "\n";
     #define MAXN 200000
      
-    int t, n, k;
-     
+    int t, n, x;
+
+    int getMex(int cnt[]) {
+        for(int i = 0; i < cnt.size(); ++i){
+            
+        }
+        return 0;
+    }
+
+    bool isSorted(vi v){
+        FOR(i, 0, v.size() - 1){
+            if(v.at(i) > v.at(i+1)){
+                return false;
+            }
+        }
+        return true;
+    }
+
     int main(){
         scanf("%d", &t);
         while(t--) {
             scanf("%d", &n);
-            scanf("%d", &k);
-            int mul = n - 1;
-            int need = (k - 1) / mul;
-            printf("%d\n", k + need);            
+            vector<int> v;
+            int count [1000];
+            FOR(i, 0 ,1000){
+                count[i] = 0;
+            }
+            for(int i = 0; i < n; ++i){
+                scanf("%d", &x);
+                v.push_back(x);
+                count[x]++;
+            }
+            int mex = getMex(count);
         }
         return 0;
     }

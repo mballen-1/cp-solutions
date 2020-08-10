@@ -34,16 +34,46 @@ void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
 void _W(const char *x) { printf("%s", x); }
 
-int t, n, x, y;
+int x, y, z, t;
 
 int main() {
   scanf("%d", &t);
   while (t--) {
-    scanf("%d %d %d", &x, &y, &n);
-    int a = n - (n%x) + y;
-    int b = n - (n%x) - (x-y);
-    int c = a <= n ? a : b;
-    printf("%d \n", c);
+    scanf("%d %d %d", &x, &y, &z);
+    if (x == y && y == z) {
+      printf("YES\n");
+      printf("%d %d %d\n", x, y, z);
+    } else {
+      bool eq = (x == y) || (x == z) || (z == y);
+      if (eq) {
+        if (x == y) {
+          if (z < y) {
+            printf("YES\n");
+            printf("%d %d %d\n", z, z, y);
+          } else {
+            printf("NO\n");
+          }
+        }
+        if (x == z) {
+          if (y < x) {
+            printf("YES\n");
+            printf("%d %d %d\n", y , y, x);
+          } else {
+            printf("NO\n");
+          }
+        }
+        if (z == y) {          
+          if (x < y) {
+            printf("YES\n");
+            printf("%d %d %d\n", x, x, y);
+          } else {
+            printf("NO\n");
+          }
+        }
+      } else {
+        printf("NO\n");
+      }
+    }
   }
   return 0;
 }

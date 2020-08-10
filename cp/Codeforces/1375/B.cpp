@@ -34,16 +34,37 @@ void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
 void _W(const char *x) { printf("%s", x); }
 
-int t, n, x, y;
+int t, n, x;
+
+int neg(int x) {
+  if (x <= 0) {
+    return x;
+  } else {
+    return -x; // hehe
+  }
+}
 
 int main() {
   scanf("%d", &t);
   while (t--) {
-    scanf("%d %d %d", &x, &y, &n);
-    int a = n - (n%x) + y;
-    int b = n - (n%x) - (x-y);
-    int c = a <= n ? a : b;
-    printf("%d \n", c);
+    scanf("%d", &n);
+    vector<int> v;
+    while (n--) {
+      _R(x);
+      v.pb(x);
+    }
+    for (int i = 0; i <= v.size() - 1; i += 2) {
+      if (i == v.size() - 1) {
+        v.at(i) = abs(v.at(i));
+      } else {
+        v.at(i) = abs(v.at(i));
+        v.at(i + 1) = neg(v.at(i + 1));
+      }
+    }
+    for (int i = 0; i < v.size(); ++i) {
+      printf("%d ", v.at(i));
+    }
+    printf("\n");
   }
   return 0;
 }

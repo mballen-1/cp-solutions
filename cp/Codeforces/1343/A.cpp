@@ -28,22 +28,29 @@ void _R(ui64 &x) { scanf("%lld", &x); }
 void _R(double &x) { scanf("%lf", &x); }
 void _R(char &x) { scanf(" %c", &x); }
 void _R(char *x) { scanf("%s", x); }
-void _W(const int &x) { printf("%d\n", x); }
+void _W(const int &x) { printf("%d", x); }
 void _W(const int64_t &x) { printf("%lld", x); }
 void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
 void _W(const char *x) { printf("%s", x); }
 
-int t, n, x, y;
+int t;
+ui64 n;
 
-int main() {
-  scanf("%d", &t);
-  while (t--) {
-    scanf("%d %d %d", &x, &y, &n);
-    int a = n - (n%x) + y;
-    int b = n - (n%x) - (x-y);
-    int c = a <= n ? a : b;
-    printf("%d \n", c);
-  }
-  return 0;
+int main(){
+    _R(t);
+    while(t--) {
+        _R(n);
+        bool found = false;
+        FOR(k, 2, 31){
+            int val = (1 << k) - 1;
+            if(n % val == 0 && !found){
+                found = true;
+                int ans = n / val;
+                _W(ans);
+                _W("\n");
+            }
+        }
+    }
+    return 0;
 }

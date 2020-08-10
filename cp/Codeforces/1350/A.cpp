@@ -34,16 +34,34 @@ void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
 void _W(const char *x) { printf("%s", x); }
 
-int t, n, x, y;
+int t;
+int n, k, ans;
 
-int main() {
-  scanf("%d", &t);
-  while (t--) {
-    scanf("%d %d %d", &x, &y, &n);
-    int a = n - (n%x) + y;
-    int b = n - (n%x) - (x-y);
-    int c = a <= n ? a : b;
-    printf("%d \n", c);
-  }
-  return 0;
+// For two positive integers a and b, 
+// a is a divisor of b if and only if there exists an integer c, 
+// such that a⋅c=b.
+int reg[46] = {
+    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199
+};
+
+int f(int n) { 
+    if (n % 2 == 0) 
+        return 2;
+    for (int i = 1; i <= 45; i++) { 
+        if (n % reg[i] == 0) 
+            return reg[i]; 
+    }
+}
+
+int main(){
+    _R(t);
+    while(t--) {
+        _R(n);
+        _R(k);
+        while(k--){
+            n += f(n);
+        }
+        _W(n);        
+    }
+    return 0;
 }

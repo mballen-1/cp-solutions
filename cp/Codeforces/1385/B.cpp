@@ -34,16 +34,28 @@ void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
 void _W(const char *x) { printf("%s", x); }
 
-int t, n, x, y;
+int x, y, t;
 
 int main() {
   scanf("%d", &t);
   while (t--) {
-    scanf("%d %d %d", &x, &y, &n);
-    int a = n - (n%x) + y;
-    int b = n - (n%x) - (x-y);
-    int c = a <= n ? a : b;
-    printf("%d \n", c);
+    scanf("%d", &x);
+    int nums[x];
+    FOR(i, 0, x){
+        nums[i] = 0;
+    }
+
+    FOR(i, 0, 2*x){
+         scanf("%d", &y);
+         if(!nums[y-1]){
+             ++nums[y-1];
+             printf("%d ", y);
+         }
+         else {
+             continue;
+         }
+    }
+    printf("\n");
   }
   return 0;
 }

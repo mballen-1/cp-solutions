@@ -34,16 +34,58 @@ void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
 void _W(const char *x) { printf("%s", x); }
 
-int t, n, x, y;
+int x, y, t;
+
+bool good (list<int> nums){
+    list<int> aux;
+    while(!nums.empty()){
+        int beg = nums.front();
+        int end = nums.back();
+        int mn = min(beg, end);
+        if(aux.empty()){            
+            aux.pb(mn);
+            if(mn == beg){
+                nums.pop_front();
+            }else {
+                nums.pop_back();
+            }            
+        } else {
+            int lst = aux.back();
+            if(mn >= lst){
+                aux.pb(mn);
+                if(mn == beg){
+                    nums.pop_front();
+                } else {
+                    nums.pop_back();
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
+void find (list<int> nums, int cnt){
+    if(good(nums)){
+        printf("%d\n", cnt);
+    }else {
+        nums.pop_front();
+        find(nums, ++cnt);
+    }
+}
 
 int main() {
   scanf("%d", &t);
   while (t--) {
-    scanf("%d %d %d", &x, &y, &n);
-    int a = n - (n%x) + y;
-    int b = n - (n%x) - (x-y);
-    int c = a <= n ? a : b;
-    printf("%d \n", c);
+    scanf("%d", &x);
+    list<int> nums;
+    FOR(i, 0, x){
+        scanf("%d", &y);
+        nums.pb(y);
+    }
+    find(nums, 0);
   }
   return 0;
 }

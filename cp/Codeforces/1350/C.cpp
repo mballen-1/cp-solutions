@@ -34,16 +34,56 @@ void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
 void _W(const char *x) { printf("%s", x); }
 
-int t, n, x, y;
+int x;
+int n, k, ans;
 
-int main() {
-  scanf("%d", &t);
-  while (t--) {
-    scanf("%d %d %d", &x, &y, &n);
-    int a = n - (n%x) + y;
-    int b = n - (n%x) - (x-y);
-    int c = a <= n ? a : b;
-    printf("%d \n", c);
-  }
-  return 0;
+int lcm(int a, int b){
+   int lcm;
+   if(a > b)
+      lcm = a;
+   else
+      lcm = b;
+   while(1) {
+      if( lcm % a == 0 && lcm % b == 0 ) {
+         return lcm;
+      }
+      lcm++;
+   }
+}
+
+int findGCD(vi arr, int n) { 
+    int result = arr[0]; 
+    for (int i = 1; i < n; i++) { 
+        result = __gcd(arr[i], result);   //gcd(arr[i], result);
+    } 
+    return result; 
+} 
+
+int main(){
+        _R(n);
+        vi nums, lcms;
+        FOR(i, 0, n ){
+            scanf("%d", &x);
+            nums.pb(x);
+        }
+        FOR(i, 0, n ){
+            FOR(j, 0, n ){
+                if(i!=j){
+                    int a = nums[i];
+                    int b = nums[j];
+                    // DEBUG(a);
+                    // DEBUG(b);
+                    int nl = lcm(a, b);
+                    // DEBUG(nl);
+                    lcms.pb(nl);
+                }
+            }
+        }
+
+        // FOR(j,0, lcms.size()){
+        //     DEBUG(lcms[j]);
+        // }
+        int ans = findGCD(lcms, lcms.size()); 
+        _W(ans);
+    return 0;
 }

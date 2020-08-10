@@ -19,31 +19,48 @@ typedef set<int> si;
 typedef set<st> ss;
 typedef pair<int, int> pii;
 typedef vector<pii> vpii;
+typedef list<int> lst;
 #define FOR(i, a, b) for (int i = a; i < b; i++)
 #define FORD(i, b, a) for (int i = b; i > a; i--)
 #define DEBUG(x) cout << std::setprecision(15) << #x << " = " << x << "\n";
-#define MAXN 200000
+#define MAXN 100000000000000000
 void _R(int &x) { scanf("%d", &x); }
 void _R(ui64 &x) { scanf("%lld", &x); }
 void _R(double &x) { scanf("%lf", &x); }
 void _R(char &x) { scanf(" %c", &x); }
 void _R(char *x) { scanf("%s", x); }
-void _W(const int &x) { printf("%d\n", x); }
+void _W(const int &x) { printf("%d", x); }
 void _W(const int64_t &x) { printf("%lld", x); }
 void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
 void _W(const char *x) { printf("%s", x); }
 
-int t, n, x, y;
+int t, n, x;
 
-int main() {
-  scanf("%d", &t);
-  while (t--) {
-    scanf("%d %d %d", &x, &y, &n);
-    int a = n - (n%x) + y;
-    int b = n - (n%x) - (x-y);
-    int c = a <= n ? a : b;
-    printf("%d \n", c);
-  }
-  return 0;
+bool check(int[] rf, int x){
+    bool can = false;
+    FOR(pos, 0, n) {
+        FOR(i, 2, n - 1){
+            slice_array(rf.begin() + pos , (rf.begin() + pos + i) );
+        }      
+    }
+    return can;
+}
+
+int main(){
+    scanf("%d", &t);
+    while(t--) {
+        scanf("%d", &n);
+        int nums[n]; 
+        int sp;
+        FOR(i, 0, n){
+            scanf("%d", &x);
+            nums[i] = x;
+        }
+        FOR(i, 0, n){
+            sp += (int) check(nums, i);
+        }
+        _W(sp);
+    }
+    return 0;
 }
