@@ -37,30 +37,29 @@ void _W(const char *x) { printf("%s", x); }
 
 int t, n, x;
 
-bool check(int[] rf, int x){
-    bool can = false;
-    FOR(pos, 0, n) {
-        FOR(i, 2, n - 1){
-            slice_array(rf.begin() + pos , (rf.begin() + pos + i) );
-        }      
-    }
-    return can;
-}
-
 int main(){
-    scanf("%d", &t);
+    scanf("%d", &t);    
     while(t--) {
         scanf("%d", &n);
-        int nums[n]; 
-        int sp;
-        FOR(i, 0, n){
-            scanf("%d", &x);
-            nums[i] = x;
-        }
-        FOR(i, 0, n){
-            sp += (int) check(nums, i);
-        }
-        _W(sp);
+        vector<int> a(n);
+		vector<int> cnt(n + 1);
+        int ans = 0;
+        for (auto &it : a) {
+			cin >> it;
+			++cnt[it];
+		}
+        for (int l = 0; l < n; ++l) {
+			int sum = 0;
+			for (int r = l; r < n; ++r) {
+				sum += a[r];
+				if (l == r) continue;
+				if (sum <= n) {
+					ans += cnt[sum];
+					cnt[sum] = 0;
+				}
+			}
+		}        
+        printf("%d\n", ans);
     }
     return 0;
 }
