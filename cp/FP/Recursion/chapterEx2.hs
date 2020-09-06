@@ -10,4 +10,4 @@ mult x y = fn x y 0 0 where
         fn :: (Integral b) => b -> b -> b -> b -> b
         fn fs sc times acc
             | (times == sc) = acc
-            | otherwise = fn fs sc (times + 1) (acc + fs)  
+            | otherwise = fn fs sc (times + 1) (acc + fs) 

@@ -42,26 +42,33 @@ void build (int x, int y, int z) {
     // 01 , 10
     // 11
     vi final;
-    if(x == 0 && y == 0){
-        while(z + 1){
-            printf("%d", 1);
-            --z;
-        }
-    } 
-    if(y == 0 && z == 0){
+    if(y == 0){
         while(x + 1){
             printf("%d", 0);
             --x;
         }
-    } else {
-        FOR(i, 0, x  ){
-            printf("0");
+        while(z + 1){
+            printf("%d", 1);
+            --z;
         }
-        FOR(i, 0, y -1 ){
-            printf("01");
+    } else{ 
+        if(x == 0 && z == 0){
+            FOR(i, 0, y){
+                printf("01");
+            }
         }
-        FOR(i, 0, z){
-            printf("1");
+        else {
+            FOR(i, 0, x){
+                printf("0");
+            }
+            if(y >= 1){
+                FOR(i, 0, y-1){
+                    printf("01");
+                }
+            }
+            FOR(i, 0, z){
+                printf("1");
+            }
         }
     }
     printf("\n");
@@ -75,3 +82,4 @@ int main(){
     }
     return 0;
 }
+
