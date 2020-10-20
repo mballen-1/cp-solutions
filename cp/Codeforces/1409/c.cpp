@@ -35,36 +35,26 @@ void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
 void _W(const char *x) { printf("%s", x); }
 
-int t, x, y, z;
+int t, x, y, n;
 
-void build (int x, int y, int z) {
-    // 00
-    // 01 , 10
-    // 11
-    if(y == 0){
-        if(x != 0){
-               cout << string(x + 1, '0') << endl;
-        } else {
-            cout << string(z + 1, '1') << endl;
-        }
-        return;
-    }
-    string ans;
-    for (int i = 0; i < y + 1; ++i) {
-        if (i & 1) ans += "0";
-        else ans += "1";
-    }
-    ans.insert(1, string(x, '0'));
-    ans.insert(0, string(z, '1'));
-    cout << ans << endl;
-}
 
 int main(){
     scanf("%d", &t);    
     while(t--) {
-        scanf("%d %d %d", &x, &y, &z);
-        build(x, y, z);
+        scanf("%d %d %d", &n, &x, &y);
+        int na = a - x;
+        int nb = b - y;
+        i64 ans = 1e18; 
+        for(int i = 0; i < 2; ++i){
+            int da = min (n, a - x);
+            int db = min (n - da, b- y);
+            ans = min (ans, (a-da) * 1ll * (b-db));
+            swap (a,b);
+            swap(x, y);
+        }
+        printf("%I64d\n", ans);
     }
     return 0;
 }
+
 

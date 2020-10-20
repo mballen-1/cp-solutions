@@ -3,6 +3,7 @@ using namespace std;
 #include <map>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 #define all(x) x.begin(), x.end()
 #define sz(x) ((int)x.size())
 #define sqr(x) ((x) * (x))
@@ -35,35 +36,17 @@ void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
 void _W(const char *x) { printf("%s", x); }
 
-int t, x, y, z;
+int t;
+float a, b, c , d, h1;
 
-void build (int x, int y, int z) {
-    // 00
-    // 01 , 10
-    // 11
-    if(y == 0){
-        if(x != 0){
-               cout << string(x + 1, '0') << endl;
-        } else {
-            cout << string(z + 1, '1') << endl;
-        }
-        return;
-    }
-    string ans;
-    for (int i = 0; i < y + 1; ++i) {
-        if (i & 1) ans += "0";
-        else ans += "1";
-    }
-    ans.insert(1, string(x, '0'));
-    ans.insert(0, string(z, '1'));
-    cout << ans << endl;
-}
 
 int main(){
     scanf("%d", &t);    
     while(t--) {
-        scanf("%d %d %d", &x, &y, &z);
-        build(x, y, z);
+        scanf("%f %f %f", &a, &b, &c);
+        h1 = sqrt(pow(a, 2) + pow (b, 2));
+        d = sqrt(pow(h1,2) + pow(c,2));
+        printf("%.0f\n", round(d));
     }
     return 0;
 }

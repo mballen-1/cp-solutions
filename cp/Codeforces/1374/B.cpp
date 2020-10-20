@@ -41,30 +41,17 @@ int main() {
   while (t--) {
     scanf("%d", &n);
     int mv = 0;
-    if(n == 1){
-        printf("0\n");
-        continue;
+    int n2 = 0, n3 = 0;
+    while(n%2 == 0){
+        ++n2; n/=2;
     }
-    if(n == 3){
-        printf("2\n");
-        continue;
+     while(n%3 == 0){
+        ++n3; n/=3;
     }
-    if(n%9 == 0){
-        while(n > 6){
-            n /= 6;
-            ++mv;
-        }
-        if (n == 6) {
-            printf("%d\n", mv +1);
-        }
-        else {
-            printf("%d\n", mv +2);
-        }
-        continue;
-    }
-    else {
+    if (n == 1 && n2 <= n3){
+        printf("%d\n", 2*n3 - n2);
+    }else{
         printf("-1\n");
-        continue;
     }
   }
   return 0;

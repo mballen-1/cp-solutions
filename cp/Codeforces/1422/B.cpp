@@ -3,6 +3,7 @@ using namespace std;
 #include <map>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 #define all(x) x.begin(), x.end()
 #define sz(x) ((int)x.size())
 #define sqr(x) ((x) * (x))
@@ -35,35 +36,56 @@ void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
 void _W(const char *x) { printf("%s", x); }
 
-int t, x, y, z;
+int t, n, m, x;
 
-void build (int x, int y, int z) {
-    // 00
-    // 01 , 10
-    // 11
-    if(y == 0){
-        if(x != 0){
-               cout << string(x + 1, '0') << endl;
-        } else {
-            cout << string(z + 1, '1') << endl;
-        }
-        return;
-    }
-    string ans;
-    for (int i = 0; i < y + 1; ++i) {
-        if (i & 1) ans += "0";
-        else ans += "1";
-    }
-    ans.insert(1, string(x, '0'));
-    ans.insert(0, string(z, '1'));
-    cout << ans << endl;
-}
 
 int main(){
     scanf("%d", &t);    
     while(t--) {
-        scanf("%d %d %d", &x, &y, &z);
-        build(x, y, z);
+       scanf("%d %d", &n, &m);
+       int mt1 [n][m];
+       int mt2 [n][m];
+       int mv1 = 0, mv2 = 0;
+       
+       for(int i = 0; i< n; ++i){
+           for(int j = 0 ;j < m; ++j){
+               cin>> x;
+               mt1[i][j] = x;
+               mt2[i][j] = x;
+           }
+       }
+
+       
+       for(int i = 0; i < n; ++i){
+           for(int j = 0; j < m/2; ++j){
+              mv1 += abs((mt1[i][j])-(mt1[i][m-j-1]));
+              mt1[i][m-j-1] = mt1[i][j];
+              printf("mv = %d\n", mv1);
+           }
+       }
+
+    //    for(int j = 0; j < m; ++j){
+    //        for(int i = 0; i < n/2; ++i ){
+    //            mv1 += abs((mt1[i][j])-(mt1[n-i-1][j]));
+    //        }
+    //    }
+
+    //    for(int j = 0; j < m; ++j){
+    //        for(int i = 0; i < n/2; ++i ){
+    //            mv2 += abs((mt2[i][j])-(mt2[n-i-1][j]));
+    //            mt2[n-i-1][j] = mt2[i][j];
+    //        }
+    //    }
+
+    //    for(int i = 0; i < n; ++i){
+    //        for(int j = 0; j < m/2; ++j){
+    //           mv2 += abs((mt2[i][j])-(mt2[i][m-j-1]));
+    //           printf("mv = %d\n", mv2);
+    //        }
+    //    }      
+
+       printf("%d\n", mv1);
+
     }
     return 0;
 }

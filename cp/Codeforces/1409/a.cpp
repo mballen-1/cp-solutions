@@ -35,35 +35,16 @@ void _W(const double &x) { printf("%.16f", x); }
 void _W(const char &x) { putchar(x); }
 void _W(const char *x) { printf("%s", x); }
 
-int t, x, y, z;
+int t, a, b;
 
-void build (int x, int y, int z) {
-    // 00
-    // 01 , 10
-    // 11
-    if(y == 0){
-        if(x != 0){
-               cout << string(x + 1, '0') << endl;
-        } else {
-            cout << string(z + 1, '1') << endl;
-        }
-        return;
-    }
-    string ans;
-    for (int i = 0; i < y + 1; ++i) {
-        if (i & 1) ans += "0";
-        else ans += "1";
-    }
-    ans.insert(1, string(x, '0'));
-    ans.insert(0, string(z, '1'));
-    cout << ans << endl;
-}
 
 int main(){
     scanf("%d", &t);    
     while(t--) {
-        scanf("%d %d %d", &x, &y, &z);
-        build(x, y, z);
+        scanf("%d %d", &a, &b);
+        int d = abs(a-b);
+        int ans = d%10 > 0 ? (d/10) + 1 : d/10;
+        printf("%d\n", ans);
     }
     return 0;
 }
